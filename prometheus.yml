@@ -1,0 +1,15 @@
+remote_read:
+  - url: http://192.168.1.48:8088/
+    enable_http2: false
+    read_recent: true
+    required_matchers:
+        external: "true" # queries must include this label to be routed to our server
+scrape_configs:
+  # The job name is added as a label `job=<job_name>` to any timeseries scraped from this config.
+  - job_name: "prometheus"
+
+    # metrics_path defaults to '/metrics'
+    # scheme defaults to 'http'.
+
+    static_configs:
+      - targets: ["localhost:9090"]
